@@ -1,7 +1,8 @@
 {
     
+    "console": { "console": "Console", "setgenerate": "" },
+    "commands": { "commands ": "Commandes" },
     "home": "Menu",
-    "addresses": "Addresses",
-    "transactions": "Transactions"
+    "wallet": { "addresses": "Addresses", "transactions": "Transactions", "wallet": "Wallet" }
     
 }

@@ -14,9 +14,11 @@
 #include <math.h>  
 #include "bignum.h"
 
+unsigned int uint = unsigned int;
+
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
-        int DiffMode = 1;
+        uint DiffMode = 1;
         if(! Params().RequireStandard() ){
                 if (pindexLast->nHeight+1 >= 15) { DiffMode = 1; }
                 else if (pindexLast->nHeight+1 >= 5) { DiffMode = 1; }
@@ -47,8 +49,9 @@ unsigned int GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const CBlockH
     int64_t nInterval = Params().Interval();
 
     // Marscoin: 1 sol (every Mars sol retarget)
-    int nForkOne = 14260;
-    int nForkTwo = 70000;
+    unsigned int nForkOne = 14260;
+    unsigned int nForkTwo = 70000;
+    
     if(nHeight >= nForkOne)
     {
       //printf("Retargeting to sol day");
@@ -315,7 +318,6 @@ unsigned int DarkGravityWave3(const CBlockIndex* pindexLast, const CBlockHeader 
     if (bnNew.GetCompact() > Params().ProofOfWorkLimit().GetCompact()){
         bnNew.SetCompact(Params().ProofOfWorkLimit().GetCompact());
     }
-
     return bnNew.GetCompact();
+    
 }
-

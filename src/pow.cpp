@@ -35,22 +35,22 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 }
 
 
-unsigned int GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
+uint GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
-    unsigned int nProofOfWorkLimit = Params().ProofOfWorkLimit().GetCompact();
+    uint nProofOfWorkLimit = Params().ProofOfWorkLimit().GetCompact();
 
     // Genesis block
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
 
-    int nHeight = pindexLast->nHeight + 1;
+    uint nHeight = pindexLast->nHeight + 1;
     int64_t nTargetSpacing = Params().TargetSpacing();
     int64_t nTargetTimespan = Params().TargetTimespan();
     int64_t nInterval = Params().Interval();
 
     // Marscoin: 1 sol (every Mars sol retarget)
-    unsigned int nForkOne = 14260;
-    unsigned int nForkTwo = 70000;
+    uint nForkOne = 14260;
+    uint nForkTwo = 70000;
     
     if(nHeight >= nForkOne)
     {
@@ -89,7 +89,7 @@ unsigned int GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const CBlockH
 
     // Marscoin: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    int blockstogoback = nInterval-1;
+    uint blockstogoback = nInterval-1;
     if ((pindexLast->nHeight+1) != nInterval)
         blockstogoback = nInterval;
 
